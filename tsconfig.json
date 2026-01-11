@@ -7,7 +7,9 @@
     "noPropertyAccessFromIndexSignature": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist", "node_modules"]

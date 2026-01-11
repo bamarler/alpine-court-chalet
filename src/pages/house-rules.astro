@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { property } from "../data/property";
+
+// TODO: Add actual house rules content
+---
+
+<BaseLayout
+  title={`House Rules | ${property.name}`}
+  description={`House rules and guidelines for guests staying at ${property.name} in Fernie, BC.`}
+>
+  <Header />
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="bg-primary-600 py-16 text-white sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            House Rules
+          </h1>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-primary-100">
+            Guidelines for a comfortable stay
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon Content -->
+    <section class="py-16 sm:py-24">
+      <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="rounded-2xl bg-neutral-50 p-8 sm:p-12">
+          <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
+            <svg
+              class="h-8 w-8 text-primary-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-neutral-900">Coming Soon</h2>
+          <p class="mt-4 text-neutral-600">
+            Our detailed house rules and guidelines will be available here shortly.
+            In the meantime, please refer to the listing on Airbnb for current policies.
+          </p>
+          <a
+            href={property.links.airbnb}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+          >
+            View on Airbnb
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

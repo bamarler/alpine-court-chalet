@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alpinecourtchalet.com/sitemap-index.xml

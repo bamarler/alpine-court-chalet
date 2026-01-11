@@ -1,0 +1,110 @@
+---
+import { property, getSchemaAmenities, getFullAddress } from "../data/property";
+import { cloudinaryUrl } from "../lib/cloudinary";
+
+// Build the VacationRental schema
+const vacationRentalSchema = {
+  "@context": "https://schema.org",
+  "@type": "VacationRental",
+
+  // Required properties
+  name: property.name,
+  identifier: property.identifier,
+  image: property.images.gallery
+    .slice(0, 10)
+    .map((img) => cloudinaryUrl(img.id, "w_1200,q_auto,f_auto")),
+  latitude: property.location.coordinates.latitude,
+  longitude: property.location.coordinates.longitude,
+
+  // Accommodation details (required nested type)
+  containsPlace: {
+    "@type": "Accommodation",
+    occupancy: {
+      "@type": "QuantitativeValue",
+      value: property.specs.maxGuests,
+    },
+    numberOfBedrooms: property.specs.bedrooms,
+    numberOfBathroomsTotal: property.specs.bathrooms,
+    numberOfRooms: property.specs.bedrooms + 3, // bedrooms + living rooms + rec room
+    bed: property.beds.map((bed) => ({
+      "@type": "BedDetails",
+      typeOfBed: bed.beds,
+      numberOfBeds: 1,
+    })),
+    amenityFeature: getSchemaAmenities(),
+  },
+
+  // Recommended properties
+  additionalType: property.propertyType,
+  description: property.description,
+  url: "https://alpinecourtchalet.com",
+
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: property.location.address.street,
+    addressLocality: property.location.address.city,
+    addressRegion: property.location.address.region,
+    postalCode: property.location.address.postalCode,
+    addressCountry: property.location.address.country,
+  },
+
+  checkinTime: property.checkIn,
+  checkoutTime: property.checkOut,
+
+  // Languages
+  knowsLanguage: ["en"],
+
+  // Photo for rich results
+  photo: {
+    "@type": "ImageObject",
+    url: cloudinaryUrl(
+      property.images.hero,
+      "w_1200,h_800,c_fill,q_auto,f_auto"
+    ),
+    caption: `${property.name} exterior view`,
+  },
+};
+
+// Local Business schema for additional SEO
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  name: property.name,
+  description: property.shortDescription,
+  url: "https://alpinecourtchalet.com",
+  telephone: "", // TODO: Add phone if available
+  image: cloudinaryUrl(
+    property.images.hero,
+    "w_1200,h_800,c_fill,q_auto,f_auto"
+  ),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: property.location.address.street,
+    addressLocality: property.location.address.city,
+    addressRegion: property.location.address.region,
+    postalCode: property.location.address.postalCode,
+    addressCountry: property.location.address.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: property.location.coordinates.latitude,
+    longitude: property.location.coordinates.longitude,
+  },
+  amenityFeature: property.highlightAmenities.map((amenity) => ({
+    "@type": "LocationFeatureSpecification",
+    name: amenity,
+    value: true,
+  })),
+  checkinTime: property.checkIn,
+  checkoutTime: property.checkOut,
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(vacationRentalSchema)}
+/>
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(localBusinessSchema)}
+/>
