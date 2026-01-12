@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import HeroVideo from "../components/HeroVideo.astro";
 import PropertyOverview from "../components/PropertyOverview.astro";
 import PhotoGallery from "../components/PhotoGallery";
+import ContactSection from "../components/ContactSection.astro";
 import { property } from "../data/property";
 
 const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -17,6 +18,7 @@ const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
     <HeroVideo />
     <PropertyOverview />
     <PhotoGallery client:load images={property.images.gallery} />
+    <ContactSection />
   </main>
 
   <Footer />

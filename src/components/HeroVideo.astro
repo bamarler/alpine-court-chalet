@@ -1,6 +1,8 @@
 ---
 import { property } from "../data/property";
 import { cloudinaryVideo, cloudinaryUrl } from "../lib/cloudinary";
+import ArrowDown from "@lucide/astro/icons/arrow-down";
+import ChevronDown from "@lucide/astro/icons/chevron-down";
 
 interface Props {
   videoId?: string;
@@ -67,62 +69,19 @@ const posterUrl = cloudinaryUrl(posterImageId, "w_1920,q_auto,f_auto");
     </div>
 
     <!-- CTA Button -->
-    <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+    <div class="mt-8">
       <a
-        href={property.links.airbnb}
-        target="_blank"
-        rel="noopener noreferrer"
+        href="#contact"
         class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-primary-700 hover:shadow-xl"
       >
-        Book Now
-        <svg
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-          ></path>
-        </svg>
-      </a>
-      <a
-        href="#overview"
-        class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/20"
-      >
-        Explore
-        <svg
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"></path>
-        </svg>
+        Contact Us
+        <ArrowDown class="h-5 w-5" />
       </a>
     </div>
   </div>
 
   <!-- Scroll Indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg
-      class="h-8 w-8 text-white/70"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-    </svg>
+    <ChevronDown class="h-8 w-8 text-white/70" />
   </div>
 </section>

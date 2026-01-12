@@ -3,13 +3,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { property } from "../data/property";
+import Clock from "@lucide/astro/icons/clock";
+import Users from "@lucide/astro/icons/users";
+import Volume2 from "@lucide/astro/icons/volume-2";
+import Ban from "@lucide/astro/icons/ban";
+import Check from "@lucide/astro/icons/check";
+import Shield from "@lucide/astro/icons/shield";
+import Dumbbell from "@lucide/astro/icons/dumbbell";
+import Camera from "@lucide/astro/icons/camera";
+import TriangleAlert from "@lucide/astro/icons/triangle-alert";
 
-// TODO: Add actual house rules content
+const { houseRules } = property;
 ---
 
 <BaseLayout
   title={`House Rules | ${property.name}`}
-  description={`House rules and guidelines for guests staying at ${property.name} in Fernie, BC.`}
+  description={`House rules, safety information, and guidelines for guests staying at ${property.name} in Fernie, BC.`}
 >
   <Header />
 
@@ -19,61 +28,375 @@ import { property } from "../data/property";
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="text-center">
           <h1 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            House Rules
+            House Rules & Safety
           </h1>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-primary-100">
-            Guidelines for a comfortable stay
+            Please treat our home with care and respect
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Coming Soon Content -->
-    <section class="py-16 sm:py-24">
-      <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-neutral-50 p-8 sm:p-12">
-          <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
-            <svg
-              class="h-8 w-8 text-primary-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+    <!-- Quick Reference Cards -->
+    <section class="bg-neutral-50 py-12">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Check-in/out -->
+          <div class="rounded-xl bg-white p-6 shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-primary-100 p-2">
+                <Clock class="h-5 w-5 text-primary-600" />
+              </div>
+              <div>
+                <p class="text-sm text-neutral-500">Check-in</p>
+                <p class="font-semibold text-neutral-900">After 4:00 PM MT</p>
+              </div>
+            </div>
           </div>
-          <h2 class="text-2xl font-bold text-neutral-900">Coming Soon</h2>
-          <p class="mt-4 text-neutral-600">
-            Our detailed house rules and guidelines will be available here shortly.
-            In the meantime, please refer to the listing on Airbnb for current policies.
-          </p>
-          <a
-            href={property.links.airbnb}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
-          >
-            View on Airbnb
-            <svg
-              class="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-              />
-            </svg>
-          </a>
+
+          <div class="rounded-xl bg-white p-6 shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-primary-100 p-2">
+                <Clock class="h-5 w-5 text-primary-600" />
+              </div>
+              <div>
+                <p class="text-sm text-neutral-500">Check-out</p>
+                <p class="font-semibold text-neutral-900">Before 10:00 AM MT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Max Guests -->
+          <div class="rounded-xl bg-white p-6 shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-primary-100 p-2">
+                <Users class="h-5 w-5 text-primary-600" />
+              </div>
+              <div>
+                <p class="text-sm text-neutral-500">Maximum Guests</p>
+                <p class="font-semibold text-neutral-900">
+                  {houseRules.maxGuests} sleeping guests
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quiet Hours -->
+          <div class="rounded-xl bg-white p-6 shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-primary-100 p-2">
+                <Volume2 class="h-5 w-5 text-primary-600" />
+              </div>
+              <div>
+                <p class="text-sm text-neutral-500">Quiet Hours</p>
+                <p class="font-semibold text-neutral-900">10 PM – 7 AM MT</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Main Rules Content -->
+    <section class="py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-2">
+          <!-- General Rules -->
+          <div class="rounded-2xl border border-neutral-200 bg-white p-8">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-red-100 p-2">
+                <Ban class="h-6 w-6 text-red-600" />
+              </div>
+              <h2 class="text-xl font-bold text-neutral-900">General Rules</h2>
+            </div>
+            <ul class="mt-6 space-y-4">
+              {
+                houseRules.generalRules.map((rule) => (
+                  <li class="flex items-start gap-3">
+                    <Check class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600" />
+                    <span class="text-neutral-700">{rule}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Safety Devices -->
+          <div class="rounded-2xl border border-neutral-200 bg-white p-8">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-green-100 p-2">
+                <Shield class="h-6 w-6 text-green-600" />
+              </div>
+              <h2 class="text-xl font-bold text-neutral-900">
+                Safety & Security
+              </h2>
+            </div>
+            <ul class="mt-6 space-y-4">
+              {
+                houseRules.safetyDevices.map((device) => (
+                  <li class="flex items-start gap-3">
+                    <Check class="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600" />
+                    <span class="text-neutral-700">{device}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sports Court Rules -->
+        <div class="mt-8 rounded-2xl border border-neutral-200 bg-white p-8">
+          <div class="flex items-center gap-3">
+            <div class="rounded-lg bg-blue-100 p-2">
+              <Dumbbell class="h-6 w-6 text-blue-600" />
+            </div>
+            <h2 class="text-xl font-bold text-neutral-900">
+              Sports Court Rules
+            </h2>
+          </div>
+          <p class="mt-4 text-neutral-600">
+            The sports court is a unique feature of our property. To ensure
+            everyone's safety and to protect this amenity, please follow these
+            rules:
+          </p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {
+              houseRules.sportsCourtRules.map((rule) => (
+                <div class="flex items-start gap-3 rounded-lg bg-neutral-50 p-4">
+                  <Check class="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
+                  <span class="text-sm text-neutral-700">{rule}</span>
+                </div>
+              ))
+            }
+          </div>
+          <div
+            class="mt-6 flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4"
+          >
+            <TriangleAlert
+              class="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600"
+            />
+            <p class="text-sm text-amber-800">
+              <strong>Important:</strong> Any damage to the sports court, equipment,
+              flooring, nets, or surrounding structures will be charged against the
+              CAD ${
+                property.bookingTerms.securityDeposit.amount.toLocaleString()
+              }
+              security deposit.
+            </p>
+          </div>
+        </div>
+
+        <!-- Security Cameras Notice -->
+        <div
+          class="mt-8 flex items-start gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-6"
+        >
+          <div class="rounded-lg bg-neutral-200 p-2">
+            <Camera class="h-6 w-6 text-neutral-600" />
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">
+              Security Camera Disclosure
+            </h3>
+            <p class="mt-1 text-neutral-600">
+              Exterior security cameras are installed at the front and back of
+              the house for security purposes. There are <strong
+                >no indoor cameras</strong
+              > anywhere in the property. Noise decibel monitors are present to ensure
+              quiet hours compliance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Terms Summary -->
+    <section id="booking-terms" class="scroll-mt-24 bg-neutral-50 py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-2xl font-bold text-neutral-900">Booking Terms</h2>
+          <p class="mt-2 text-neutral-600">
+            Key information about payments and cancellations
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-8 lg:grid-cols-3">
+          <!-- Security Deposit -->
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Security Deposit
+            </h3>
+            <p class="mt-4 text-3xl font-bold text-primary-600">
+              ${property.bookingTerms.securityDeposit.amount.toLocaleString()}
+              <span class="text-lg font-normal text-neutral-500">CAD</span>
+            </p>
+            <p class="mt-2 text-sm text-neutral-600">
+              Refundable within {
+                property.bookingTerms.securityDeposit.refundDays
+              }, subject to property inspection
+            </p>
+          </div>
+
+          <!-- Payment Schedule -->
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Payment Schedule
+            </h3>
+            <div class="mt-4 space-y-3">
+              <div class="flex justify-between">
+                <span class="text-neutral-600">Deposit (at booking)</span>
+                <span class="font-semibold text-neutral-900"
+                  >{property.bookingTerms.paymentSchedule.depositPercent}%</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-neutral-600"
+                  >Balance (due {
+                    property.bookingTerms.paymentSchedule.balanceDueDays
+                  } days before)</span
+                >
+                <span class="font-semibold text-neutral-900"
+                  >{
+                    100 - property.bookingTerms.paymentSchedule.depositPercent
+                  }%</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Peak Periods -->
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-neutral-900">Peak Periods</h3>
+            <p class="mt-2 text-sm text-neutral-600">
+              Stricter cancellation policy applies:
+            </p>
+            <ul class="mt-4 space-y-2">
+              {
+                property.bookingTerms.peakPeriods.map((period) => (
+                  <li class="flex items-center gap-2 text-sm text-neutral-700">
+                    <span class="h-1.5 w-1.5 rounded-full bg-primary-600" />
+                    {period}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <!-- Cancellation Policies -->
+        <div class="mt-10 grid gap-8 lg:grid-cols-2">
+          <!-- Standard Cancellation -->
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Standard Cancellation
+            </h3>
+            <div
+              class="mt-4 overflow-hidden rounded-lg border border-neutral-200"
+            >
+              <table class="w-full text-sm">
+                <thead class="bg-neutral-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left font-medium text-neutral-700"
+                      >Timing</th
+                    >
+                    <th class="px-4 py-3 text-left font-medium text-neutral-700"
+                      >Refund</th
+                    >
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200">
+                  {
+                    property.bookingTerms.cancellation.standard.map(
+                      (policy) => (
+                        <tr>
+                          <td class="px-4 py-3 text-neutral-600">
+                            {policy.daysOut}
+                          </td>
+                          <td class="px-4 py-3 text-neutral-900">
+                            {policy.refund}
+                          </td>
+                        </tr>
+                      )
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Peak Period Cancellation -->
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Peak Period Cancellation
+            </h3>
+            <div
+              class="mt-4 overflow-hidden rounded-lg border border-neutral-200"
+            >
+              <table class="w-full text-sm">
+                <thead class="bg-neutral-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left font-medium text-neutral-700"
+                      >Timing</th
+                    >
+                    <th class="px-4 py-3 text-left font-medium text-neutral-700"
+                      >Refund</th
+                    >
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200">
+                  {
+                    property.bookingTerms.cancellation.peak.map((policy) => (
+                      <tr>
+                        <td class="px-4 py-3 text-neutral-600">
+                          {policy.daysOut}
+                        </td>
+                        <td class="px-4 py-3 text-neutral-900">
+                          {policy.refund}
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Notes -->
+        <div
+          class="mt-10 rounded-2xl border border-neutral-200 bg-white p-6 text-sm text-neutral-600"
+        >
+          <h3 class="font-semibold text-neutral-900">Additional Information</h3>
+          <ul class="mt-4 space-y-2">
+            <li>
+              • For bookings made within 60 days of arrival, full payment is due
+              immediately
+            </li>
+            <li>• No refunds for late arrivals or early departures</li>
+            <li>
+              • Refunds not provided for weather, transportation disruptions, or
+              personal circumstances
+            </li>
+            <li>• Travel insurance is strongly recommended</li>
+            <li>• All times are in Mountain Time (MT)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-16">
+      <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-neutral-900">Have Questions?</h2>
+        <p class="mt-4 text-neutral-600">
+          If you have any questions about our house rules or booking terms,
+          please don't hesitate to reach out.
+        </p>
+        <a
+          href="/#contact"
+          class="mt-6 inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+        >
+          Contact Us
+        </a>
       </div>
     </section>
   </main>

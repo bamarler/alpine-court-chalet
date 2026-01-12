@@ -19,6 +19,7 @@ interface PropertyLocation {
     latitude: number;
     longitude: number;
   };
+  timezone: string;
 }
 
 interface PropertySpecs {
@@ -27,6 +28,18 @@ interface PropertySpecs {
   maxGuests: number;
   squareFootage?: number;
   levels: number;
+}
+
+interface ContactPerson {
+  name: string;
+  email: string;
+  phone: string;
+  role: "property_manager" | "owner";
+}
+
+interface CompanyInfo {
+  name: string;
+  contacts: ContactPerson[];
 }
 
 interface Amenity {
@@ -56,6 +69,37 @@ interface PropertyImages {
   }>;
 }
 
+interface HouseRules {
+  quietHours: {
+    start: string;
+    end: string;
+  };
+  maxGuests: number;
+  noSmoking: boolean;
+  noParties: boolean;
+  noCommercialPhotography: boolean;
+  generalRules: string[];
+  sportsCourtRules: string[];
+  safetyDevices: string[];
+}
+
+interface BookingTerms {
+  securityDeposit: {
+    amount: number;
+    currency: string;
+    refundDays: string;
+  };
+  paymentSchedule: {
+    depositPercent: number;
+    balanceDueDays: number;
+  };
+  cancellation: {
+    standard: Array<{ daysOut: string; refund: string }>;
+    peak: Array<{ daysOut: string; refund: string }>;
+  };
+  peakPeriods: string[];
+}
+
 // =============================================================================
 // Property Data
 // =============================================================================
@@ -76,29 +120,30 @@ export const property = {
   // Location
   location: {
     address: {
-      street: "TODO: Street Address",
-      city: "Fernie",
+      street: "5587 Currie Bowl Wy",
+      city: "Fernie Alpine Resort",
       region: "British Columbia",
-      postalCode: "TODO: Postal Code",
+      postalCode: "V0B 1M6",
       country: "Canada",
     },
     coordinates: {
-      latitude: 49.5042, // TODO: Replace with exact coordinates (5+ decimals)
-      longitude: -115.0631, // TODO: Replace with exact coordinates (5+ decimals)
+      latitude: 49.4628,
+      longitude: -115.0873,
     },
-  } satisfies PropertyLocation,
+    timezone: "America/Edmonton", // Mountain Time
+  },
 
   // Property Specs
   specs: {
     bedrooms: 5,
     bathrooms: 5,
-    maxGuests: 12,
+    maxGuests: 14,
     levels: 3,
   } satisfies PropertySpecs,
 
-  // Check-in/Check-out
+  // Check-in/Check-out (Mountain Time)
   checkIn: "16:00",
-  checkOut: "11:00",
+  checkOut: "10:00",
 
   // Bed Configuration (from floor plans)
   beds: [
@@ -335,7 +380,7 @@ export const property = {
     "Hot Tub",
     "5 Bedrooms",
     "2 Kitchens",
-    "Sleeps 12",
+    "Sleeps 14",
   ],
 
   // Links
@@ -344,11 +389,96 @@ export const property = {
     vrbo: "TODO: VRBO listing URL (if applicable)",
   },
 
+  // Company & Contact Info
+  company: {
+    name: "Sirrom Properties",
+    contacts: [
+      {
+        name: "Bo Choroszewski",
+        email: "crboleslaw@yahoo.com",
+        phone: "+1 250 423 9093",
+        role: "property_manager" as const,
+      },
+      {
+        name: "Robyn Morris",
+        email: "rmorris@sirromproperties.com",
+        phone: "+1 647 971 2705",
+        role: "owner" as const,
+      },
+    ],
+  } satisfies CompanyInfo,
+
+  // House Rules
+  houseRules: {
+    quietHours: {
+      start: "22:00",
+      end: "07:00",
+    },
+    maxGuests: 10, // Booking limit (property sleeps 14)
+    noSmoking: true,
+    noParties: true,
+    noCommercialPhotography: true,
+    generalRules: [
+      "Treat the home with care and respect",
+      "No smoking or vaping on the property",
+      "No parties or events",
+      "No commercial photography",
+      "Quiet hours: 10:00 PM – 7:00 AM (Mountain Time)",
+    ],
+    sportsCourtRules: [
+      "Recreational use by registered guests only",
+      "Guests assume full responsibility for personal injury or damage",
+      "No glass containers, food, or alcohol on the court",
+      "Proper, non-marking athletic footwear required at all times",
+      "No hanging, climbing, or tampering with nets, hoops, walls, or equipment",
+      "Children must be supervised at all times",
+      "Only equipment provided by the Owner may be used—hockey pucks, hard balls, and other non-approved items are strictly prohibited",
+      "No reckless or unsafe behavior",
+    ],
+    safetyDevices: [
+      "Exterior security cameras (front and back of house)",
+      "No indoor cameras",
+      "Carbon monoxide alarm installed",
+      "Smoke alarm installed",
+      "Noise decibel monitors on property",
+    ],
+  } satisfies HouseRules,
+
+  // Booking Terms
+  bookingTerms: {
+    securityDeposit: {
+      amount: 2000,
+      currency: "CAD",
+      refundDays: "7–14 days after departure",
+    },
+    paymentSchedule: {
+      depositPercent: 30,
+      balanceDueDays: 60,
+    },
+    cancellation: {
+      standard: [
+        { daysOut: "60+ days", refund: "Full refund minus $250 CAD admin fee" },
+        { daysOut: "30–59 days", refund: "50% refund" },
+        { daysOut: "Less than 30 days", refund: "No refund" },
+      ],
+      peak: [
+        { daysOut: "90+ days", refund: "Full refund" },
+        { daysOut: "60–89 days", refund: "50% refund" },
+        { daysOut: "Less than 60 days", refund: "No refund" },
+      ],
+    },
+    peakPeriods: [
+      "Christmas week",
+      "New Year's week",
+      "Statutory holiday long weekends",
+    ],
+  } satisfies BookingTerms,
+
   // SEO
   seo: {
     title: "Alpine Court Chalet | Luxury Ski Chalet in Fernie, BC",
     description:
-      "Book Alpine Court Chalet, a luxury 5-bedroom ski-in/ski-out chalet in Fernie, British Columbia. Features indoor sports court, hot tub, and stunning Rocky Mountain views. Sleeps 12.",
+      "Book Alpine Court Chalet, a luxury 5-bedroom ski-in/ski-out chalet in Fernie, British Columbia. Features indoor sports court, hot tub, and stunning Rocky Mountain views. Sleeps 14.",
     keywords: [
       "Fernie ski chalet",
       "Fernie vacation rental",
@@ -391,11 +521,36 @@ export function getFullAddress(): string {
   return `${street}, ${city}, ${region} ${postalCode}, ${country}`;
 }
 
+/** Get primary contact (property manager) */
+export function getPrimaryContact(): ContactPerson {
+  const propertyManager = property.company.contacts.find(
+    (c) => c.role === "property_manager"
+  );
+  if (propertyManager) {
+    return propertyManager;
+  }
+  // Fallback to first contact - guaranteed to exist by data structure
+  const firstContact = property.company.contacts[0];
+  if (firstContact === undefined) {
+    throw new Error("No contacts defined in property data");
+  }
+  return firstContact;
+}
+
+/** Get owner contact */
+export function getOwnerContact(): ContactPerson | undefined {
+  return property.company.contacts.find((c) => c.role === "owner");
+}
+
 // Export types for use in components
 export type {
   Amenity,
   AmenityCategory,
   BedConfiguration,
+  BookingTerms,
+  CompanyInfo,
+  ContactPerson,
+  HouseRules,
   PropertyImages,
   PropertyLocation,
   PropertySpecs,

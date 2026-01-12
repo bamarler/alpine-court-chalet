@@ -31,7 +31,7 @@ export default function PhotoGallery({
   }));
 
   return (
-    <section id="gallery" className="bg-neutral-50 py-16 sm:py-24">
+    <section id="gallery" className="scroll-mt-8 bg-neutral-50 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center">

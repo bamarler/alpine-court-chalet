@@ -1,5 +1,7 @@
 ---
 import { property } from "../data/property";
+import Menu from "@lucide/astro/icons/menu";
+import X from "@lucide/astro/icons/x";
 
 interface Props {
   transparent?: boolean;
@@ -12,6 +14,7 @@ const navLinks = [
   { href: "/#gallery", label: "Gallery" },
   { href: "/#amenities", label: "Amenities" },
   { href: "/house-rules", label: "House Rules" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -50,20 +53,14 @@ const currentPath = Astro.url.pathname;
                   ? "text-white/90 hover:text-white"
                   : "text-neutral-600",
                 currentPath === link.href && !transparent && "text-primary-600",
+                link.label === "Contact" &&
+                  "rounded-lg bg-primary-600 px-4 py-2 !text-white hover:bg-primary-700",
               ]}
             >
               {link.label}
             </a>
           ))
         }
-        <a
-          href={property.links.airbnb}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-lg bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 hover:shadow-md"
-        >
-          Book Now
-        </a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -71,97 +68,110 @@ const currentPath = Astro.url.pathname;
         id="mobile-menu-button"
         type="button"
         class:list={[
-          "inline-flex items-center justify-center rounded-lg p-2 md:hidden",
+          "relative z-60 inline-flex items-center justify-center rounded-lg p-2 md:hidden",
           transparent ? "text-white" : "text-neutral-700",
         ]}
         aria-expanded="false"
         aria-label="Toggle navigation menu"
       >
-        <svg
-          id="menu-icon-open"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-        </svg>
-        <svg
-          id="menu-icon-close"
-          class="hidden h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+        <span id="menu-icon-open">
+          <Menu class="h-6 w-6" />
+        </span>
+        <span id="menu-icon-close" class="hidden">
+          <X class="h-6 w-6" />
+        </span>
       </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div
-      id="mobile-menu"
-      class="hidden overflow-hidden transition-all duration-300 md:hidden"
-    >
-      <div class="space-y-1 pb-4 pt-2">
-        {
-          navLinks.map((link) => (
-            <a
-              href={link.href}
-              class:list={[
-                "block rounded-lg px-3 py-2 text-base font-medium transition-colors",
-                transparent
-                  ? "text-white/90 hover:bg-white/10 hover:text-white"
-                  : "text-neutral-700 hover:bg-neutral-100 hover:text-primary-600",
-                currentPath === link.href &&
-                  !transparent &&
-                  "bg-primary-50 text-primary-600",
-              ]}
-            >
-              {link.label}
-            </a>
-          ))
-        }
-        <a
-          href={property.links.airbnb}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-2 block rounded-lg bg-primary-600 px-3 py-2.5 text-center text-base font-semibold text-white transition-colors hover:bg-primary-700"
-        >
-          Book Now
-        </a>
-      </div>
     </div>
   </nav>
 </header>
 
+<!-- Full-screen Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-50 hidden flex-col bg-primary-600 md:hidden"
+>
+  <!-- Close Button -->
+  <div class="flex h-16 items-center justify-between px-4">
+    <a href="/" class="text-lg font-semibold tracking-tight text-white">
+      {property.name}
+    </a>
+    <button
+      id="mobile-menu-close"
+      type="button"
+      class="inline-flex items-center justify-center rounded-lg p-2 text-white"
+      aria-label="Close menu"
+    >
+      <X class="h-6 w-6" />
+    </button>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="flex flex-1 flex-col items-center justify-center gap-8">
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "mobile-nav-link text-2xl font-medium text-white/90 transition-colors hover:text-white",
+            link.label === "Contact" &&
+              "mt-4 rounded-lg bg-white px-8 py-3 !text-primary-600 hover:bg-white/90",
+          ]}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</div>
+
 <script>
   const header = document.getElementById("header");
   const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenuClose = document.getElementById("mobile-menu-close");
   const mobileMenu = document.getElementById("mobile-menu");
   const menuIconOpen = document.getElementById("menu-icon-open");
   const menuIconClose = document.getElementById("menu-icon-close");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
-  // Mobile menu toggle
+  const openMenu = (): void => {
+    mobileMenu?.classList.remove("hidden");
+    mobileMenu?.classList.add("flex");
+    menuIconOpen?.classList.add("hidden");
+    menuIconClose?.classList.remove("hidden");
+    mobileMenuButton?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeMenu = (): void => {
+    mobileMenu?.classList.add("hidden");
+    mobileMenu?.classList.remove("flex");
+    menuIconOpen?.classList.remove("hidden");
+    menuIconClose?.classList.add("hidden");
+    mobileMenuButton?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  };
+
+  // Open menu
   mobileMenuButton?.addEventListener("click", () => {
     const isExpanded =
       mobileMenuButton.getAttribute("aria-expanded") === "true";
-    mobileMenuButton.setAttribute("aria-expanded", String(!isExpanded));
-    mobileMenu?.classList.toggle("hidden");
-    menuIconOpen?.classList.toggle("hidden");
-    menuIconClose?.classList.toggle("hidden");
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  // Close menu with X button
+  mobileMenuClose?.addEventListener("click", closeMenu);
+
+  // Close menu when clicking a link
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
   // Scroll-based header background (only for transparent headers)
-  if (header?.dataset.transparent === "true") {
+  if (header?.dataset["transparent"] === "true") {
     const updateHeader = (): void => {
       if (window.scrollY > 50) {
         header.classList.remove("bg-transparent");
