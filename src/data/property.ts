@@ -109,7 +109,7 @@ export const property = {
   name: "Alpine Court Chalet",
   tagline: "Luxury Ski Chalet in Fernie, B.C.",
   description:
-    "A stunning ski-in mountain home featuring Fernie's only indoor squash & multi-sport court and games room, ideal for squash, wallyball, pickleball, pool, badminton, or yoga. 2 living areas with separate kitchens. Enjoy dramatic alpine views, a relaxing outdoor hot tub, and spacious modern design with 5 bedrooms, 5 bathrooms, and 14 sleeping spots for flexible comfort. Two fireplaces, large windows, and easy slope access complete this exceptional retreat.",
+    "Welcome to Fernie Alpine Court Chalet, a one-of-a-kind mountain retreat where recreation and relaxation meet in perfect balance. As the only chalet at Fernie Alpine Resort with a full-size indoor squash court, this property redefines the ski-in, ski-out experience with thoughtful design, spectacular views, and an unmatched range of amenities.",
   shortDescription:
     "Luxury 5-bedroom ski chalet with indoor sports court, hot tub, and ski-in/ski-out access in Fernie, B.C.",
   fullDescription: `Welcome to Fernie Alpine Court Chalet, a one-of-a-kind mountain retreat where recreation and relaxation meet in perfect balance. As the only chalet at Fernie Alpine Resort with a full-size indoor squash court, this property redefines the ski-in, ski-out experience with thoughtful design, spectacular views, and an unmatched range of amenities.
