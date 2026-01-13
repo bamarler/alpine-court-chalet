@@ -18,12 +18,14 @@ const posterUrl = cloudinaryUrl(posterImageId, "w_1920,q_auto,f_auto");
 <section class="relative h-screen w-full overflow-hidden">
   <!-- Video Background -->
   <video
+    id="hero-video"
     autoplay
     muted
     loop
     playsinline
+    disablepictureinpicture
     poster={posterUrl}
-    class="absolute inset-0 h-full w-full object-cover"
+    class="hero-video absolute inset-0 h-full w-full object-cover"
   >
     <source src={`${videoUrl}.webm`} type="video/webm" />
     <source src={`${videoUrl}.mp4`} type="video/mp4" />
@@ -48,3 +50,24 @@ const posterUrl = cloudinaryUrl(posterImageId, "w_1920,q_auto,f_auto");
     featuredAmenities={property.featuredAmenities}
   />
 </section>
+
+<style>
+  .hero-video::-webkit-media-controls {
+    display: none !important;
+  }
+  .hero-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+  .hero-video::-webkit-media-controls-panel {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const video = document.getElementById("hero-video") as HTMLVideoElement;
+  if (video) {
+    video.play().catch(() => {
+      // Autoplay blocked - poster image shows as fallback
+    });
+  }
+</script>
