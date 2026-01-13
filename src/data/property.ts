@@ -259,22 +259,17 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
       },
 
       {
-        id: "sports-bar",
-        alt: "Sports viewing area with bar seating",
-        category: "recreation",
-      },
-      {
         id: "sports-closet",
         alt: "Sports equipment storage with rackets and gear",
         category: "recreation",
       },
 
       // Hot Tub (placeholder)
-      {
-        id: "hot-tub",
-        alt: "Private hot tub on covered deck",
-        category: "outdoor",
-      },
+      // {
+      //   id: "hot-tub",
+      //   alt: "Private hot tub on covered deck",
+      //   category: "outdoor",
+      // },
 
       // Views
       {
@@ -289,13 +284,18 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
       },
       {
         id: "mountain-view-2",
-        alt: "Panoramic Rocky Mountain views",
+        alt: "Fernie Alpine Resort with Chair Lift",
         category: "views",
       },
       {
         id: "sundog",
         alt: "Stunning Sundog on the Mountain",
         category: "views",
+      },
+      {
+        id: "kitchen-with-chef",
+        alt: "Professional Chef preparing meal in kitchen",
+        category: "kitchen",
       },
 
       // Outdoor & Amenities
