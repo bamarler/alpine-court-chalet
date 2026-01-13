@@ -159,14 +159,14 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
   location: {
     address: {
       street: "5587 Currie Bowl Wy",
-      city: "Fernie Alpine Resort",
+      city: "East Kootenay A",
       region: "British Columbia",
       postalCode: "V0B 1M6",
       country: "Canada",
     },
     coordinates: {
-      latitude: 49.4628,
-      longitude: -115.0873,
+      latitude: 49.46029,
+      longitude: -115.07936,
     },
     timezone: "America/Edmonton", // Mountain Time
   },
