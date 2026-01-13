@@ -49,7 +49,7 @@ export const pointsOfInterest: PointOfInterest[] = [
     name: "Historic Downtown Fernie",
     description:
       "Charming 2nd Avenue with boutique shops, restaurants, cafes, and historic architecture. 10-minute drive.",
-    lat: 49.5,
+    lat: 49.501,
     lng: -115.0631,
     category: "town",
     imageId: "downtown-fernie",
@@ -93,7 +93,7 @@ export const pointsOfInterest: PointOfInterest[] = [
     name: "Fernie Museum",
     description:
       "Discover the fascinating history of Fernie, from coal mining heritage to the legendary Griz.",
-    lat: 49.50294,
+    lat: 49.50922,
     lng: -115.06167,
     category: "attraction",
     imageId: "fernie-museum",
