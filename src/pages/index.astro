@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import FooterAnimated from "../components/FooterAnimated";
 import HeroVideo from "../components/HeroVideo.astro";
-import PropertyOverview from "../components/PropertyOverview.astro";
+import PropertyOverviewAnimated from "../components/PropertyOverviewAnimated";
 import PhotoGallery from "../components/PhotoGallery";
-import ContactSection from "../components/ContactSection.astro";
-import { property } from "../data/property";
+import ContactSectionAnimated from "../components/ContactSectionAnimated";
+import { property, getPrimaryContact } from "../data/property";
 
-const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
+const primaryContact = getPrimaryContact();
 ---
 
 <BaseLayout>
@@ -16,10 +16,28 @@ const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
 
   <main>
     <HeroVideo />
-    <PropertyOverview />
+    <PropertyOverviewAnimated
+      client:load
+      description={property.description}
+      fullDescription={property.fullDescription}
+      specs={property.specs}
+      amenities={property.amenities}
+    />
     <PhotoGallery client:load images={property.images.gallery} />
-    <ContactSection />
+    <ContactSectionAnimated
+      client:visible
+      propertyName={property.name}
+      primaryContact={primaryContact}
+    />
   </main>
 
-  <Footer />
+  <FooterAnimated
+    client:visible
+    propertyName={property.name}
+    shortDescription={property.shortDescription}
+    location={property.location}
+    companyName={property.company.name}
+    identifier={property.identifier}
+    primaryContact={primaryContact}
+  />
 </BaseLayout>

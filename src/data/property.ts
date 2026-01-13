@@ -107,11 +107,51 @@ interface BookingTerms {
 export const property = {
   // Basic Info
   name: "Alpine Court Chalet",
-  tagline: "Luxury Ski Chalet in Fernie, BC",
+  tagline: "Luxury Ski Chalet in Fernie, B.C.",
   description:
-    "Experience a one-of-a-kind mountain retreat at Alpine Court Chalet—the only property at Fernie Alpine Resort with a full-size indoor squash court. This luxury 5-bedroom chalet offers true ski-in access, floor-to-ceiling windows framing the Lizard Range, outdoor hot tub, and a professionally equipped sports court for squash, pickleball, volleyball, and more. Perfect for families and groups seeking adventure in the Canadian Rockies.",
+    "A stunning ski-in mountain home featuring Fernie's only indoor squash & multi-sport court and games room, ideal for squash, wallyball, pickleball, pool, badminton, or yoga. 2 living areas with separate kitchens. Enjoy dramatic alpine views, a relaxing outdoor hot tub, and spacious modern design with 5 bedrooms, 5 bathrooms, and 14 sleeping spots for flexible comfort. Two fireplaces, large windows, and easy slope access complete this exceptional retreat.",
   shortDescription:
-    "Luxury 5-bedroom ski chalet with indoor sports court, hot tub, and ski-in/ski-out access in Fernie, BC.",
+    "Luxury 5-bedroom ski chalet with indoor sports court, hot tub, and ski-in/ski-out access in Fernie, B.C.",
+  fullDescription: `The Space
+
+Welcome to Fernie Alpine Court Chalet, a one-of-a-kind mountain retreat where recreation and relaxation meet in perfect balance. As the only chalet at Fernie Alpine Resort with a full-size indoor squash court, this property redefines the ski-in, ski-out experience with thoughtful design, spectacular views, and an unmatched range of amenities.
+
+Framed by the dramatic peaks of the Lizard Range, the chalet offers true ski-in access and expansive mountain views through floor-to-ceiling windows. After a day on the slopes, unwind in the outdoor hot tub, warm up by the fire, or simply take in the alpine glow from the Great Room's plush seating. Every space is crafted to connect modern comfort with mountain serenity.
+
+The home's indoor court is its signature feature—professionally finished and fully equipped for squash, badminton, pickleball, volleyball, table tennis, and even indoor soccer. It can also be transformed into a yoga or fitness studio, or used as a small conference space for corporate retreats and workshops. On-site massage and yoga sessions can be arranged, bringing wellness directly to your stay.
+
+The chef's kitchen features premium appliances, a five-burner gas range, and plenty of counter space for group cooking. The open-concept layout allows everyone to stay connected, whether preparing meals, sharing stories, or simply enjoying a drink by the fire. The dining table seats twelve, perfect for both celebratory dinners and casual mountain breakfasts. For special occasions, private chef services can be arranged to create an elevated dining experience right in the comfort of your chalet.
+
+With five bedrooms and five bathrooms, the home provides a comfortable and flexible setup for families and groups. There are 14 individual sleeping spots, giving guests a variety of arrangements to sleep 10 people comfortably. The flexibility of bedding options makes it easy to accommodate couples, singles, and kids alike while ensuring everyone enjoys their own space.
+
+Two gas fireplaces, high-speed fibre Wi-Fi, and multiple lounge areas make the chalet ideal for relaxing or working remotely. The heated garage accommodates two vehicles, with driveway parking for at least four more. Ski storage and easy entry points keep transitions from mountain to home effortless.
+
+Whether you're planning a family ski trip, a corporate retreat, or a wellness getaway, Fernie Alpine Court Chalet offers a rare combination of sophistication, versatility, and adventure. From the private multi-sport court and hot tub to the personalized wellness and chef options, every detail invites you to make the most of your mountain time.
+
+As your Fernie-based manager, Bo is always nearby to ensure everything runs smoothly—from arranging activities and services to providing local recommendations and support throughout your stay.
+
+Fernie Alpine Court Chalet isn't just a place to stay—it's a mountain experience designed for connection, comfort, and play.
+
+Guest Access
+
+• Direct entry to 2 car garage via large, multi-vehicle driveway
+• Downhill ski in trail access from rear yard
+• Stunning mountain views at both front and back
+• Kootenay Taxi services the ski resort and downtown quickly and affordably. They can provide a variety of 11-passenger, 6-passenger mini-vans, and larger vehicles that suit most group sizes, as well as a chartered shuttle to Cranbrook Airport (YXC) and Calgary Airport (YYC).
+
+Comfort & Safety
+
+Your comfort and safety are our priority. The chalet features a state-of-the-art air exchange system with HEPA filters that capture 99.97% of airborne particles, providing fresh, clean air throughout.
+
+We follow a four-step cleaning protocol:
+• Clean: sweeping, vacuuming, mopping, and washing dishes and laundry at high heat
+• Sanitize: disinfecting high-touch surfaces and allowing them to air-dry
+• Check: a room-by-room checklist ensures thorough cleaning between stays
+• Reset: linens, guest supplies, and equipment are handled safely without re-entering sanitized rooms
+
+Explore the Area
+
+Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish, horseback ride, or golf during the day. Explore art galleries, local shops, or nightlife in town. No matter where your day takes you, the breathtaking mountains are always there to greet you.`,
 
   // Identifiers
   identifier: "H182037990", // Provincial registration number
@@ -137,7 +177,7 @@ export const property = {
   specs: {
     bedrooms: 5,
     bathrooms: 5,
-    maxGuests: 14,
+    maxGuests: 10,
     levels: 3,
   } satisfies PropertySpecs,
 
@@ -291,9 +331,8 @@ export const property = {
       items: [
         { name: "Indoor Sports Court", schemaName: "sportsCourt" },
         { name: "Squash Court", schemaName: "squashCourt" },
-        { name: "Hot Tub", schemaName: "hotTub" },
         {
-          name: "Full Pickleball Court (Summer)",
+          name: "Full Pickleball Court (coming soon)",
           schemaName: "pickleballCourt",
         },
         { name: "Sound System", schemaName: "soundSystem" },
@@ -312,10 +351,10 @@ export const property = {
       items: [
         { name: "Ski-In/Ski-Out Access", schemaName: "skiInSkiOut" },
         { name: "Ski Storage & Boot Room", schemaName: "skiStorage" },
+        { name: "Hot Tub", schemaName: "hotTub" },
         { name: "Garage (2 Cars)", schemaName: "parking" },
-        { name: "Free Parking", schemaName: "freeParking" },
         { name: "BBQ Grill", schemaName: "barbecue" },
-        { name: "Patio & Balconies", schemaName: "patio" },
+        { name: "Covered Patio & Balconies", schemaName: "patio" },
         { name: "Outdoor Dining Area", schemaName: "outdoorDining" },
         { name: "Outdoor Furniture", schemaName: "outdoorFurniture" },
       ],
@@ -324,6 +363,9 @@ export const property = {
       category: "Kitchen & Dining",
       items: [
         { name: "Two Full Kitchens", schemaName: "kitchen" },
+        { name: "Wine Fridge", schemaName: "wineFridge" },
+        { name: "Dining Table (Seats 12)", schemaName: "diningTable" },
+        { name: "Premium Coffee Provided", schemaName: "coffee" },
         { name: "Dishwasher", schemaName: "dishwasher" },
         { name: "Microwave", schemaName: "microwave" },
         { name: "Stove & Oven", schemaName: "stove" },
@@ -331,10 +373,7 @@ export const property = {
         { name: "Hot Water Kettle", schemaName: "kettle" },
         { name: "Toaster", schemaName: "toaster" },
         { name: "Blender", schemaName: "blender" },
-        { name: "Wine Fridge", schemaName: "wineFridge" },
         { name: "Trash Compactor", schemaName: "trashCompactor" },
-        { name: "Dining Table (Seats 12)", schemaName: "diningTable" },
-        { name: "Coffee Provided", schemaName: "coffee" },
       ],
     },
     {
@@ -380,7 +419,21 @@ export const property = {
     "Hot Tub",
     "5 Bedrooms",
     "2 Kitchens",
-    "Sleeps 14",
+    "Sleeps 10",
+  ],
+
+  // Featured amenities for animated hero cycling (priority order, sports scattered)
+  featuredAmenities: [
+    "Ski-In/Ski-Out at Fernie Alpine Resort",
+    "Full-Size Indoor Sports Court",
+    "Stunning Rocky Mountain Views",
+    "Private Outdoor Hot Tub",
+    "Championship Squash Court",
+    "Two Gourmet Kitchens",
+    "Floor-to-Ceiling Windows",
+    // "Pickleball & Volleyball",
+    "Panoramic Mountain Balconies",
+    "Pool Table & Table Tennis",
   ],
 
   // Links
@@ -414,7 +467,7 @@ export const property = {
       start: "22:00",
       end: "07:00",
     },
-    maxGuests: 10, // Booking limit (property sleeps 14)
+    maxGuests: 10, // Booking limit (property sleeps 10)
     noSmoking: true,
     noParties: true,
     noCommercialPhotography: true,
@@ -476,17 +529,17 @@ export const property = {
 
   // SEO
   seo: {
-    title: "Alpine Court Chalet | Luxury Ski Chalet in Fernie, BC",
+    title: "Alpine Court Chalet | Luxury Ski Chalet in Fernie, B.C.",
     description:
-      "Book Alpine Court Chalet, a luxury 5-bedroom ski-in/ski-out chalet in Fernie, British Columbia. Features indoor sports court, hot tub, and stunning Rocky Mountain views. Sleeps 14.",
+      "Book Alpine Court Chalet, a luxury 5-bedroom ski-in/ski-out chalet in Fernie, British Columbia. Features indoor sports court, hot tub, and stunning Rocky Mountain views. Sleeps 10.",
     keywords: [
       "Fernie ski chalet",
       "Fernie vacation rental",
-      "luxury ski chalet BC",
+      "luxury ski chalet B.C.",
       "ski-in ski-out Fernie",
       "Fernie accommodation",
       "Canadian Rockies chalet",
-      "Fernie BC rental",
+      "Fernie B.C. rental",
       "mountain chalet British Columbia",
     ],
   },

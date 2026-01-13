@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { cloudinaryUrl } from "../lib/cloudinary";
+import { FadeInView } from "./animations";
 
 interface GalleryImage {
   id: string;
@@ -18,6 +21,8 @@ export default function PhotoGallery({
 }: PhotoGalleryProps): React.JSX.Element {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const isGridInView = useInView(gridRef, { once: true, margin: "-100px" });
 
   const openLightbox = (index: number): void => {
     setLightboxIndex(index);
@@ -34,23 +39,36 @@ export default function PhotoGallery({
     <section id="gallery" className="scroll-mt-8 bg-neutral-50 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center">
+        <FadeInView className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
             Gallery
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
             Take a tour of our luxury mountain chalet
           </p>
-        </div>
+        </FadeInView>
 
         {/* Image Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          ref={gridRef}
+          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {images.map((image, index) => (
-            <button
+            <motion.button
               key={image.id}
               type="button"
               onClick={() => openLightbox(index)}
               className="group relative aspect-4/3 overflow-hidden rounded-xl bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              initial={{ opacity: 0, y: 30 }}
+              animate={
+                isGridInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+              }
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+                ease: "easeOut",
+              }}
+              whileHover={{ scale: 1.02 }}
             >
               <img
                 src={cloudinaryUrl(image.id)}
@@ -83,9 +101,9 @@ export default function PhotoGallery({
                   </svg>
                 </span>
               </div>
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Lightbox */}

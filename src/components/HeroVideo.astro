@@ -1,8 +1,7 @@
 ---
 import { property } from "../data/property";
 import { cloudinaryVideo, cloudinaryUrl } from "../lib/cloudinary";
-import ArrowDown from "@lucide/astro/icons/arrow-down";
-import ChevronDown from "@lucide/astro/icons/chevron-down";
+import HeroAnimated from "./HeroAnimated";
 
 interface Props {
   videoId?: string;
@@ -42,46 +41,10 @@ const posterUrl = cloudinaryUrl(posterImageId, "w_1920,q_auto,f_auto");
   >
   </div>
 
-  <!-- Content -->
-  <div
-    class="relative flex h-full flex-col items-center justify-center px-4 text-center text-white"
-  >
-    <h1
-      class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
-    >
-      {property.name}
-    </h1>
-    <p class="mt-4 max-w-2xl text-lg text-white/90 sm:text-xl md:text-2xl">
-      {property.tagline}
-    </p>
-
-    <!-- Highlight amenities -->
-    <div class="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
-      {
-        property.highlightAmenities
-          .slice(0, 4)
-          .map((amenity) => (
-            <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-sm sm:text-base">
-              {amenity}
-            </span>
-          ))
-      }
-    </div>
-
-    <!-- CTA Button -->
-    <div class="mt-8">
-      <a
-        href="#contact"
-        class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-primary-700 hover:shadow-xl"
-      >
-        Contact Us
-        <ArrowDown class="h-5 w-5" />
-      </a>
-    </div>
-  </div>
-
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <ChevronDown class="h-8 w-8 text-white/70" />
-  </div>
+  <!-- Animated Content -->
+  <HeroAnimated
+    client:load
+    propertyName={property.name}
+    featuredAmenities={property.featuredAmenities}
+  />
 </section>
