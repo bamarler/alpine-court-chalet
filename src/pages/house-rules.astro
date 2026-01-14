@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { property } from "../data/property";
+import { cloudinaryUrl } from "../lib/cloudinary";
 import Clock from "@lucide/astro/icons/clock";
 import Users from "@lucide/astro/icons/users";
 import Volume2 from "@lucide/astro/icons/volume-2";
@@ -14,6 +15,7 @@ import Camera from "@lucide/astro/icons/camera";
 import TriangleAlert from "@lucide/astro/icons/triangle-alert";
 
 const { houseRules } = property;
+const heroImageUrl = cloudinaryUrl(property.images.houseRulesHero, "w_1920,q_auto,f_auto");
 ---
 
 <BaseLayout
@@ -24,13 +26,17 @@ const { houseRules } = property;
 
   <main class="pt-20">
     <!-- Hero Section -->
-    <section class="bg-primary-600 py-16 text-white sm:py-24">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      class="relative bg-cover bg-center py-16 text-white sm:py-24"
+      style={`background-image: url('${heroImageUrl}')`}
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="text-center">
           <h1 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             House Rules & Safety
           </h1>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-primary-100">
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-white/90">
             Please treat our home with care and respect
           </p>
         </div>

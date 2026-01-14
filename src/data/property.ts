@@ -198,6 +198,7 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
   images: {
     hero: "exterior-front",
     ogImage: "exterior-front",
+    houseRulesHero: "wide-window",
     gallery: [
       // Exterior
       {
