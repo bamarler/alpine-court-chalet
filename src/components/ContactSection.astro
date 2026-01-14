@@ -8,7 +8,7 @@ interface Props {
   posterImageId?: string;
 }
 
-const { videoId = "skiing-trees-video", posterImageId = property.images.hero } =
+const { videoId = "skiing-tree-video", posterImageId = property.images.contactFallback } =
   Astro.props;
 
 const primaryContact = getPrimaryContact();
@@ -30,8 +30,7 @@ const posterUrl = cloudinaryUrl(posterImageId, "w_1920,q_auto,f_auto");
     poster={posterUrl}
     class="contact-video absolute inset-0 h-full w-full object-cover"
   >
-    <source src={`${videoUrl}.webm`} type="video/webm" />
-    <source src={`${videoUrl}.mp4`} type="video/mp4" />
+    <source src={videoUrl} type="video/mp4" />
     <img
       src={posterUrl}
       alt="Skiing through trees"

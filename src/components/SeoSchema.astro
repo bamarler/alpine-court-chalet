@@ -58,7 +58,7 @@ const vacationRentalSchema = {
   photo: {
     "@type": "ImageObject",
     url: cloudinaryUrl(
-      property.images.hero,
+      property.images.ogImage,
       "w_1200,h_800,c_fill,q_auto,f_auto"
     ),
     caption: `${property.name} exterior view`,
@@ -74,7 +74,7 @@ const localBusinessSchema = {
   url: "https://alpinecourtchalet.com",
   telephone: "", // TODO: Add phone if available
   image: cloudinaryUrl(
-    property.images.hero,
+    property.images.ogImage,
     "w_1200,h_800,c_fill,q_auto,f_auto"
   ),
   address: {

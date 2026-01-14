@@ -196,11 +196,17 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
 
   // Images (Cloudinary IDs)
   images: {
-    hero: "exterior-front",
+    heroFallback: "exterior-front",
+    contactFallback: "contact-fallback",
     ogImage: "exterior-front",
     houseRulesHero: "wide-window",
     gallery: [
       // Exterior
+      {
+        id: "exterior-front",
+        alt: "Chalet front exterior view",
+        category: "exterior",
+      },
       {
         id: "exterior-winter",
         alt: "Chalet exterior with snow-covered mountains",
@@ -333,7 +339,7 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
 
   videos: {
     hero: "hero-loop",
-    skiing: "skiing-trees-video",
+    skiing: "skiing-tree-video",
   },
 
   // Amenities (organized for display and SEO)

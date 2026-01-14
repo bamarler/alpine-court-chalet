@@ -8,7 +8,7 @@ interface Props {
   posterImageId?: string;
 }
 
-const { videoId = "hero-loop", posterImageId = property.images.hero } =
+const { videoId = "hero-loop", posterImageId = property.images.heroFallback } =
   Astro.props;
 
 const videoUrl = cloudinaryVideo(videoId, "q_auto");
@@ -27,9 +27,7 @@ const posterUrl = cloudinaryUrl(posterImageId, "w_1920,q_auto,f_auto");
     poster={posterUrl}
     class="hero-video absolute inset-0 h-full w-full object-cover"
   >
-    <source src={`${videoUrl}.webm`} type="video/webm" />
-    <source src={`${videoUrl}.mp4`} type="video/mp4" />
-    <!-- Fallback image if video doesn't load -->
+    <source src={videoUrl} type="video/mp4" />
     <img
       src={posterUrl}
       alt={`${property.name} exterior`}

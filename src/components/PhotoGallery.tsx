@@ -17,7 +17,7 @@ interface PhotoGalleryProps {
 }
 
 // Number of images to show on mobile before "View More"
-const MOBILE_INITIAL_COUNT = 5;
+const MOBILE_INITIAL_COUNT = 6;
 
 export default function PhotoGallery({
   images,
