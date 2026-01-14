@@ -60,8 +60,10 @@ interface BedConfiguration {
 }
 
 interface PropertyImages {
-  hero: string;
+  heroFallback: string;
+  contactFallback: string;
   ogImage: string;
+  houseRulesHero: string;
   gallery: Array<{
     id: string;
     alt: string;
