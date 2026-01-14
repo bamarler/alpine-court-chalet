@@ -278,12 +278,12 @@ Fernie is a playground for outdoor and cultural adventures. Hike, ski, fly fish,
         category: "recreation",
       },
 
-      // Hot Tub (placeholder)
-      // {
-      //   id: "hot-tub",
-      //   alt: "Private hot tub on covered deck",
-      //   category: "outdoor",
-      // },
+      // Hot Tub
+      {
+        id: "hot-tub",
+        alt: "Private hot tub on covered deck",
+        category: "outdoor",
+      },
 
       // Views
       {
